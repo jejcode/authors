@@ -18,7 +18,7 @@ module.exports = {
         })
         .catch(err => {
             console.log(err)
-            res.json(err)
+            res.status(400).json(err)
         })
     },
 
@@ -31,7 +31,7 @@ module.exports = {
     },
 
     updateAuthor : (req,res) => {
-        Author.findOneAndUpdate({_id: req.params.id}, req.body, {new:true})
+        Author.findOneAndUpdate({_id: req.params.id}, req.body, {new:true, runValidators: true})
             .then( updatedAuthor => {
                 res.json(updatedAuthor)
             })

@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { getAllAuthors, deleteAuthorById } from "../services/author-service";
 
 const AuthorList = (props) => {
-    const {setNameToEdit} = props
+    // const {setNameToEdit} = props
     const [loaded, setLoaded] = useState(false)
     const [authors, setAuthors] = useState([])
     const navigate = useNavigate()
@@ -28,9 +28,9 @@ const AuthorList = (props) => {
         setAuthors(authors.filter(author => author._id !== authorId))
     }
 
-    const editThisAuthor = (authorData) => {
-        setNameToEdit(authorData.name)
-        navigate(`/authors/${authorData._id}/edit`)
+    const editThisAuthor = (authorId) => {
+        // setNameToEdit(authorId.name)
+        navigate(`/authors/${authorId}/edit`)
 
     }
     return (
@@ -51,7 +51,7 @@ const AuthorList = (props) => {
                                     <td >{author.name}</td>
                                     <td>{
                                         <>
-                                            <button className="btn btn-sm mx-2 btn-warning" onClick={(e) => editThisAuthor(author)}>Edit</button>
+                                            <button className="btn btn-sm mx-2 btn-warning" onClick={(e) => editThisAuthor(author._id)}>Edit</button>
                                             <button className="btn btn-sm mx-2 btn-danger" onClick={(e) => deleteThisAuthor(author._id)}>Delete</button>
                                         </>
                                         }</td>
